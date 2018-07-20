@@ -55,6 +55,14 @@ end
 # Add your after (RE)load hooks here
 #
 Padrino.after_load do
+  # Configure FactoryBot for console sessions
+  if ENV["PADRINO_CONSOLE"]
+    require "factory_bot"
+    FactoryBot.find_definitions
+    FactoryBot.define do
+      to_create { |instance| instance.save(raise_on_failure: true) }
+    end
+  end
 end
 
 Padrino.load!

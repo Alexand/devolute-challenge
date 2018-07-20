@@ -23,12 +23,17 @@ gem 'sqlite3'
 gem 'sequel'
 
 # Test requirements
-gem 'rspec', :group => 'test'
-gem 'rack-test', :require => 'rack/test', :group => 'test'
+group :development, :test do
+  gem "factory_bot"
+end
+
+group :test do
+  gem 'rspec'
+  gem 'rack-test', :require => 'rack/test'
+end
 
 # Padrino Stable Gem
 gem 'padrino', '0.14.3'
-
 # Or Padrino Edge
 # gem 'padrino', :github => 'padrino/padrino-framework'
 
