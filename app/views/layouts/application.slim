@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    meta[charset="utf-8"]
+    meta[http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"]
+    title = @title
+    meta[name="viewport" content="width=device-width, initial-scale=1.0"]
+    meta[name="author" content="João Cunha"]
+    meta[name="description" content=""]
+    = stylesheet_link_tag :app
+    = stylesheet_link_tag '/components/normalize-css/normalize', :app
+    / = yield_content :head
+  body ng-app="#{@ng_app}"
+    = javascript_include_tag :'angular.min.js', :app, defer: true
+    = javascript_include_tag :'angular-route.min.js', :app, defer: true
+    = yield
+    / = yield_content :body
