@@ -39,7 +39,31 @@ RSpec.describe Account do
 
   end
 
-  xit "is not valid without a password" do
+  describe "#validate_password" do
+    context "password is null" do
+      before { account.password = nil }
+      it { expect(account).to_not be_valid }
+    end
 
+    context "password_confirmation is null" do
+      before { account.password_confirmation = nil }
+      it { expect(account).to_not be_valid }
+    end
+
+    context "password has less than 4 characters" do
+      before { account.password = "fooo" }
+      it { expect(account).to_not be_valid }
+    end
+
+    context "password and password_confirmation differ" do
+      before { account.password += "-difference"}
+
+      it { expect(account).to_not be_valid }
+    end
+  end
+
+  describe "#crypted_password" do
+    before { account.save }
+    it { expect(account.crypted_password).to_not eq "password" }
   end
 end
