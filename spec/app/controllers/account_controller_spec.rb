@@ -29,8 +29,4 @@ RSpec.describe "/account" do
       end
     end
   end
-
-  xit "with" do
-    expect(last_response.body).to eq "Hello World"
-  end
 end
