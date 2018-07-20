@@ -26,6 +26,7 @@ gem 'sequel'
 
 # Test requirements
 group :development, :test do
+  gem 'byebug'
   gem "factory_bot"
 end
 

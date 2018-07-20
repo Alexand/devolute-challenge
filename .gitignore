@@ -6,6 +6,7 @@ vendor/gems/*
 .sass-cache/*
 db/*.db
 .*.sw*
+.byebug_history
 public/node_modules
 public/components/**/*.*
 !public/components/**/*[.|-]min.*
