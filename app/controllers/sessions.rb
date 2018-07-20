@@ -5,10 +5,11 @@ Devolute::App.controllers :sessions do
   end
 
   post :create do
-    if Account.authenticate(params[:email], params[:password])
-      redirect '/main'
+    if account = Account.authenticate(params[:email], params[:password])
+      sign_in(account)
+      redirect '/'
     else
-      render 'index'
+      redirect '/login'
     end
   end
 

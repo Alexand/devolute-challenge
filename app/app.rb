@@ -73,12 +73,5 @@ module Devolute
     #   error 500 do
     #     render 'errors/500'
     #   end
-    get :index do
-      @title = 'Index'
-      @ng_app = "app"
-
-      render :index
-    end
-#
   end
 end

@@ -8,7 +8,7 @@ module Devolute
       end
 
       def current_account
-        @current_account ||= Account.find_by_id(session[:current_account])
+        @current_account ||= Account[session[:current_account]]
       end
 
       def current_account?(account)

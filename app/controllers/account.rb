@@ -18,7 +18,10 @@ Devolute::App.controllers :account, :provides => [:html, :json] do
         flash.now[:error] = @account.errors
         return redirect('/register')
       else
-        redirect('main.html')
+        byebug
+        @account.save
+        sign_in(@account)
+        redirect('/')
       end
 
       @account.save
