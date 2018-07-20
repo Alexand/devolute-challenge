@@ -1,7 +1,12 @@
-h1 Numbers
+h1 Your Images
 div ng-controller="IndexController"
   ol
-    li ng-repeat="number in numbers" I'm {{ number }} :)
+    li ng-repeat="image in images" I'm {{ file }} :)
+
+  hr
+
+  input type="file" file-model="myFile"
+  button ng-click="uploadFile()" upload me
 
   div(ng-view)
 / - content_for :head do
