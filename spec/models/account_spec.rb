@@ -68,4 +68,20 @@ RSpec.describe Account do
     before { account.save }
     it { expect(account.crypted_password).to_not eq "password" }
   end
+
+  describe ".authenticate" do
+    before { account.save }
+
+    context "email and password are correct" do
+      it { expect(described_class.authenticate(account.email, account.password)).to be_a Account }
+    end
+
+    context "email is not correct" do
+      it { expect(described_class.authenticate("wrong@email.com", account.password)).to be nil }
+    end
+
+    context "password is not correct" do
+      it { expect(described_class.authenticate(account.email, "WrongPassword")).to be nil }
+    end
+  end
 end

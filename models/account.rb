@@ -33,6 +33,18 @@ class Account < Sequel::Model
     encrypt_password
   end
 
+  ##
+  # This method is for authentication purpose.
+  #
+  def self.authenticate(email, password)
+    account = filter(Sequel.function(:lower, :email) => Sequel.function(:lower, email)).first
+    account&.password?(password) ? account : nil
+  end
+
+  def password?(password)
+    ::BCrypt::Password.new(crypted_password) == password
+  end
+
   private
 
   def encrypt_password
