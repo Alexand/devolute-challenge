@@ -6,6 +6,7 @@ class Account < Sequel::Model
   attr_accessor :password, :password_confirmation
 
   def validate
+    validates_presence :name
     validate_email
     validate_password
   end

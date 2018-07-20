@@ -35,8 +35,10 @@ RSpec.describe Account do
     end
   end
 
-  xit "is not valid without a name" do
+  context "without a name" do
+    before { account.name = "" }
 
+    it { expect(account).to_not be_valid }
   end
 
   describe "#validate_password" do
