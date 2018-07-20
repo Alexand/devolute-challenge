@@ -19,12 +19,15 @@ gem 'rake'
 
 # Component requirements
 gem "activesupport", ">= 3.1"
+gem "aws-sdk-s3"
 gem "bcrypt"
 gem "rack-parser", require: "rack/parser"
 gem 'sass'
 gem 'slim'
 gem 'sqlite3'
 gem 'sequel'
+gem "shrine", "~> 2.11"
+gem "shrine-memory", "~> 0.3.0"
 
 # Test requirements
 group :development, :test do

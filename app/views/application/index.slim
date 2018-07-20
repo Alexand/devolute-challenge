@@ -1,7 +1,14 @@
-h1 Numbers
+h1 Your Archives
 div ng-controller="IndexController"
   ol
-    li ng-repeat="number in numbers" I'm {{ number }} :)
+    li ng-repeat="archive in archives"
+      a href="{{archive.path}}" "{{ archive.name }}"
+
+  hr
+
+  / input type="file" file-model="myFile"
+  / button ng-click="uploadFile()" upload me
+  input(data-my-Directive type="file" name="file")
 
   div(ng-view)
 / - content_for :head do
