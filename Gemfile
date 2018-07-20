@@ -27,6 +27,7 @@ gem 'slim'
 gem 'sequel'
 gem "shrine", "~> 2.11"
 gem "shrine-memory", "~> 0.3.0"
+gem 'pg'
 
 # Test requirements
 group :development, :test do
