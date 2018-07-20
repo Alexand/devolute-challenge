@@ -1,3 +1,8 @@
+# frozen_string_literal: true
+
+require "active_support/core_ext/object/blank"
+require "active_support/core_ext/numeric/time"
+
 # Defines our constants
 RACK_ENV = ENV['RACK_ENV'] ||= 'development' unless defined?(RACK_ENV)
 PADRINO_ROOT = File.expand_path('../..', __FILE__) unless defined?(PADRINO_ROOT)
@@ -55,6 +60,14 @@ end
 # Add your after (RE)load hooks here
 #
 Padrino.after_load do
+  # Configure FactoryBot for console sessions
+  if ENV["PADRINO_CONSOLE"]
+    require "factory_bot"
+    FactoryBot.find_definitions
+    FactoryBot.define do
+      to_create { |instance| instance.save(raise_on_failure: true) }
+    end
+  end
 end
 
 Padrino.load!

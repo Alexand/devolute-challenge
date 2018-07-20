@@ -11,24 +11,34 @@ gem 'puma'# gem 'thin' # or mongrel
 # gem 'trinidad', :platform => 'jruby'
 
 # Optional JSON codec (faster performance)
-# gem 'oj'
+gem 'oj'
 
 # Project requirements
 gem 'rake'
 
+
 # Component requirements
+gem "activesupport", ">= 3.1"
+gem "bcrypt"
+gem "rack-parser", require: "rack/parser"
 gem 'sass'
 gem 'slim'
 gem 'sqlite3'
 gem 'sequel'
 
 # Test requirements
-gem 'rspec', :group => 'test'
-gem 'rack-test', :require => 'rack/test', :group => 'test'
+group :development, :test do
+  gem 'byebug'
+  gem "factory_bot"
+end
+
+group :test do
+  gem 'rspec'
+  gem 'rack-test', :require => 'rack/test'
+end
 
 # Padrino Stable Gem
 gem 'padrino', '0.14.3'
-
 # Or Padrino Edge
 # gem 'padrino', :github => 'padrino/padrino-framework'
 
