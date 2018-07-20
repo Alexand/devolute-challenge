@@ -17,6 +17,8 @@ gem 'puma'# gem 'thin' # or mongrel
 gem 'rake'
 
 # Component requirements
+gem "activesupport", ">= 3.1"
+gem "bcrypt"
 gem 'sass'
 gem 'slim'
 gem 'sqlite3'
