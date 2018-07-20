@@ -11,14 +11,16 @@ gem 'puma'# gem 'thin' # or mongrel
 # gem 'trinidad', :platform => 'jruby'
 
 # Optional JSON codec (faster performance)
-# gem 'oj'
+gem 'oj'
 
 # Project requirements
 gem 'rake'
 
+
 # Component requirements
 gem "activesupport", ">= 3.1"
 gem "bcrypt"
+gem "rack-parser", require: "rack/parser"
 gem 'sass'
 gem 'slim'
 gem 'sqlite3'

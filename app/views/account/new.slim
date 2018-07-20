@@ -1,0 +1,28 @@
+h1 Registration
+= form_for(@account, '/account') do |f|
+  div.field
+    = f.label :name
+    br
+    = f.text_field :name
+    br
+    = error_message_on @account, :name
+  div.field
+    = f.label :email
+    br
+    = f.text_field :email
+    br
+    = error_message_on @account, :email
+  div.field
+    = f.label :password
+    br
+    = f.password_field :password
+    br
+    = error_message_on @account, :password
+  div.field
+    = f.label :password_confirmation
+    br
+    = f.password_field :password_confirmation
+    br
+    = error_message_on @account, :password_confirmation
+  p
+    = f.submit "Create", :class => "btn btn-primary"

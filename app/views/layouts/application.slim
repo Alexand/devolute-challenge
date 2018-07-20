@@ -13,5 +13,6 @@ html
   body ng-app="#{@ng_app}"
     = javascript_include_tag :'angular.min.js', :app, defer: true
     = javascript_include_tag :'angular-route.min.js', :app, defer: true
+    ={:error => 'danger', :warning => 'warning', :success => 'success', :notice => 'info'}.map { |type, class_name| flash_tag(type, :class => "alert alert-#{class_name} fade in", :bootstrap => true) }.join.html_safe
     = yield
     / = yield_content :body

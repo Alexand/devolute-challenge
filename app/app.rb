@@ -3,7 +3,20 @@ module Devolute
     register ScssInitializer
     register Padrino::Mailer
     register Padrino::Helpers
+    # register Padrino::Login
+    # register Padrino::Access
+
+    json_parser = proc { |body| ::Oj.load(body) }
+    use Rack::Parser, content_types: {
+      "application/json" => json_parser,
+      "application/vnd.api+json" => json_parser,
+    }
+
+    disable :protect_from_csrf
     enable :sessions
+
+    # set_access :*, :allow => :index
+    # set_access :humans, :allow => :restricted
 
     ##
     # Caching support.
@@ -60,12 +73,12 @@ module Devolute
     #   error 500 do
     #     render 'errors/500'
     #   end
-      get :index do
-    @title = 'Index'
-    @ng_app = "app"
+    get :index do
+      @title = 'Index'
+      @ng_app = "app"
 
-    render :index
-  end
+      render :index
+    end
 #
   end
 end
