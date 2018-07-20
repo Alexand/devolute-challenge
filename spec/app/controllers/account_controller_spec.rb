@@ -25,7 +25,7 @@ RSpec.describe "/account" do
       end
 
       it "returns hello world" do
-        expect(last_response.status).to eq 200
+        expect(last_response.status).to eq 302
       end
     end
   end

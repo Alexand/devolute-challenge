@@ -10,7 +10,7 @@ Devolute::App.controllers :account, :provides => [:html, :json] do
   # end
 
   post "/" do
-    # begin
+    begin
       params[:account].merge!(role: :user)
       @account = Account.new(params[:account])
 
@@ -22,9 +22,8 @@ Devolute::App.controllers :account, :provides => [:html, :json] do
       end
 
       @account.save
-    # rescue StandardError => ex
-    #   status 400
-    #   @account
-    # end
+    rescue StandardError => ex
+      status 400
+    end
   end
 end
