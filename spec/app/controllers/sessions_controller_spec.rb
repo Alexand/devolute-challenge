@@ -34,7 +34,14 @@ RSpec.describe "/sessions" do
   end
 
   describe "GET /logout" do
-    xit "empty the current session"
-    xit "redirect to homepage if account is logging out"
+    it "empty the current session" do
+      get '/logout'
+      expect(last_request.env['rack.session'][:current_account]).to be_nil
+    end
+
+    it "redirect to homepage if account is logging out" do
+      get '/logout'
+      expect(last_response).to be_redirect
+    end
   end
 end

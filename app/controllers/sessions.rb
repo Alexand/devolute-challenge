@@ -13,5 +13,8 @@ Devolute::App.controllers :sessions do
   end
 
   get :destroy, :map => '/logout' do
+    sign_out
+    flash[:notice] = "You have successfully logged out."
+    redirect '/'
   end
 end
