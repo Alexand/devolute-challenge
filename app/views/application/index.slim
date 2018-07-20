@@ -1,12 +1,13 @@
 h1 Your Images
 div ng-controller="IndexController"
   ol
-    li ng-repeat="image in images" I'm {{ file }} :)
+    li ng-repeat="image in images" I'm {{ image }} :)
 
   hr
 
-  input type="file" file-model="myFile"
-  button ng-click="uploadFile()" upload me
+  / input type="file" file-model="myFile"
+  / button ng-click="uploadFile()" upload me
+  input(data-my-Directive type="file" name="file")
 
   div(ng-view)
 / - content_for :head do

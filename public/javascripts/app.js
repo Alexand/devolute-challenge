@@ -1,5 +1,5 @@
 !function() {
-  var app = angular.module('app', ["ngRoute"]);
+  var app = angular.module('app', []);
 
   app.directive('fileModel', ['$parse', function ($parse) {
       return {
@@ -17,52 +17,38 @@
       };
   }]);
 
-  app.service('fileUpload', ['$http:', function ($http:) {
-    this.uploadFileToUrl = function(file, uploadUrl){
-       var fd = new FormData();
-       fd.append('file', file);
+  app.directive('myDirective', function (httpPostFactory) {
+   return {
+       restrict: 'A',
+       scope: true,
+       link: function (scope, element, attr) {
 
-       $http:.post(uploadUrl, fd, {
-          transformRequest: angular.identity,
-          headers: {'Content-Type': undefined}
-       })
-
-       .success(function(){
-       })
-
-       .error(function(){
-       });
-    }
- }]);
-
-  app.controller('IndexController', function($scope) {
-    $scope.uploadFile = function(){
-       var file = $scope.myFile;
-
-       console.log('file is ' );
-       console.dir(file);
-
-       var uploadUrl = "/fileUpload";
-       fileUpload.uploadFileToUrl(file, uploadUrl);
-    };
-
-    $scope.images = [1,2,3,4,5];
+           element.bind('change', function () {
+               var formData = new FormData();
+               formData.append('file', element[0].files[0]);
+               httpPostFactory('/archive/upload', formData, function (callback) {
+                  // recieve image name to use in a ng-src
+                   console.log(callback);
+               });
+           });
+       }
+   };
   });
 
-  // app.config(function($routeProvider) {
-  //     $routeProvider
-  //     .when("/", {
-  //         templateUrl : "main.html"
-  //     })
-  //     .when("/red", {
-  //         templateUrl : "red.html"
-  //     })
-  //     .when("/green", {
-  //         templateUrl : "green.html"
-  //     })
-  //     .when("/blue", {
-  //         templateUrl : "blue.html"
-  //     });
-  // });
+  app.factory('httpPostFactory', function ($http) {
+    return function (file, data, callback) {
+        $http({
+            url: file,
+            method: "POST",
+            data: data,
+            headers: {'Content-Type': undefined}
+        }).then(function (response){
+          callback(response);
+        });
+    };
+  });
 
+  app.controller('IndexController', function($scope) {
+    $scope.images = [1,2,3,4,5];
+  });
 }(window);
