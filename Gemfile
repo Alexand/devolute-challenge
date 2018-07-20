@@ -19,6 +19,7 @@ gem 'rake'
 
 # Component requirements
 gem "activesupport", ">= 3.1"
+gem "aws-sdk-s3"
 gem "bcrypt"
 gem "rack-parser", require: "rack/parser"
 gem 'sass'
