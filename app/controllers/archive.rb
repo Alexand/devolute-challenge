@@ -3,6 +3,14 @@ Devolute::App.controllers :archive do
     redirect '/login' unless (signed_in? || ENV["RACK_ENV"] == "test")
   end
 
+  get "/my" do
+    Archive.where(account_id: current_account[:id])
+      .select(:name, :path)
+      .all
+      .map(&:values)
+      .to_json
+  end
+
   post '/upload' do
     if params[:file]
       @uploader = ::FileUploader.new(:store)

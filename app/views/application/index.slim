@@ -1,7 +1,8 @@
-h1 Your Images
+h1 Your Archives
 div ng-controller="IndexController"
   ol
-    li ng-repeat="image in images" I'm {{ image }} :)
+    li ng-repeat="archive in archives"
+      a href="{{archive.path}}" "{{ archive.name }}"
 
   hr
 
