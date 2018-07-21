@@ -1,7 +1,7 @@
 Devolute::App.controllers :sessions do
 
   get :new, :map => "/login" do
-    render 'index'
+    render 'application/index'
   end
 
   post :create do
