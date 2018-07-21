@@ -18,7 +18,6 @@ Devolute::App.controllers :account, :provides => [:html, :json] do
         flash.now[:error] = @account.errors
         return redirect('/register')
       else
-        byebug
         @account.save
         sign_in(@account)
         redirect('/')
@@ -27,6 +26,7 @@ Devolute::App.controllers :account, :provides => [:html, :json] do
       @account.save
     rescue StandardError => ex
       status 400
+      { message: ex.message }.to_json
     end
   end
 end
