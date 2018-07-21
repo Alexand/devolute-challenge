@@ -21,7 +21,7 @@ gem 'rake'
 gem "activesupport", ">= 3.1"
 gem "aws-sdk-s3"
 gem "bcrypt"
-gem 'rack-cors', require 'rack/cors'
+gem 'rack-cors', require: 'rack/cors'
 gem "rack-parser", require: "rack/parser"
 gem 'sass'
 gem 'slim'
