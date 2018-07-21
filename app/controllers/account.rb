@@ -16,7 +16,7 @@ Devolute::App.controllers :account, :provides => [:html, :json] do
 
       unless @account.valid?
         flash.now[:error] = @account.errors
-        return redirect('/register')
+        return redirect('/register', error: @account.errors)
       else
         @account.save
         sign_in(@account)

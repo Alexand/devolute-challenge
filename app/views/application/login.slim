@@ -1,11 +1,12 @@
 h1 Login
 
 = form_tag '/sessions/create' do
-  = label_tag :email
-  = text_field_tag :email
-  br
-  = label_tag :password
-  = password_field_tag :password
+  .form-group
+    = label_tag :email
+    = email_field_tag :email, class:"form-control"
+  .form-group
+    = label_tag :password
+    = password_field_tag :password, class:"form-control", placeholder:"Password"
   p
     = submit_tag "Sign in", :class => "btn btn-primary"
 

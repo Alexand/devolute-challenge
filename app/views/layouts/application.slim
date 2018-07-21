@@ -7,12 +7,22 @@ html
     meta[name="viewport" content="width=device-width, initial-scale=1.0"]
     meta[name="author" content="João Cunha"]
     meta[name="description" content=""]
-    = stylesheet_link_tag :app
+    = stylesheet_link_tag 'bootstrap', 'application'
     = stylesheet_link_tag '/components/normalize-css/normalize', :app
     / = yield_content :head
   body ng-app="#{@ng_app}"
-    = javascript_include_tag :'angular.min.js', :app, defer: true
-    = javascript_include_tag :'angular-route.min.js', :app, defer: true
-    ={:error => 'danger', :warning => 'warning', :success => 'success', :notice => 'info'}.map { |type, class_name| flash_tag(type, :class => "alert alert-#{class_name} fade in", :bootstrap => true) }.join.html_safe
-    = yield
-    / = yield_content :body
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          =link_to "Devolute", url(:application, :index), :class => 'navbar-brand', :title => 'Devolute Dashboard'
+          ul.nav.navbar-nav.pull-right
+            li.navbar-logout
+              = button_to :logout, url(:sessions, :destroy), :method => :get, :class => 'navbar-nav-form', :submit_options => { :type => :submit, :title => :logout, :class => 'navbar-nav-form-link' } do
+                = tag_icon('power-off')
+    .container.main
+      .main-wrapper
+        = javascript_include_tag :'angular.min.js', :app, defer: true
+        = javascript_include_tag :'angular-route.min.js', :app, defer: true
+        ={:error => 'danger', :warning => 'warning', :success => 'success', :notice => 'info'}.map { |type, class_name| flash_tag(type, :class => "alert alert-#{class_name} fade in", :bootstrap => true) }.join.html_safe
+        = yield
+        / = yield_content :body

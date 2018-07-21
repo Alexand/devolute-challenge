@@ -9,7 +9,7 @@ Devolute::App.controllers :sessions do
       sign_in(account)
       redirect '/'
     else
-      redirect '/login'
+      redirect '/login', notice: "Email and password combination are not valid!"
     end
   end
 

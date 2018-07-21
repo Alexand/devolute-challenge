@@ -3,8 +3,7 @@ module Devolute
     register ScssInitializer
     register Padrino::Mailer
     register Padrino::Helpers
-    # register Padrino::Login
-    # register Padrino::Access
+    register Padrino::Admin::AccessControl
 
     use Rack::Cors do
       allow do
@@ -23,9 +22,6 @@ module Devolute
 
     disable :protect_from_csrf
     enable :sessions
-
-    # set_access :*, :allow => :index
-    # set_access :humans, :allow => :restricted
 
     ##
     # Caching support.
