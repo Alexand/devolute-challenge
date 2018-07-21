@@ -6,6 +6,15 @@ module Devolute
     # register Padrino::Login
     # register Padrino::Access
 
+    use Rack::Cors do
+      allow do
+        # put real origins here
+        origins '*'
+        # and configure real resources here
+        resource '*', :headers => :any, :methods => [:get, :post, :options]
+      end
+    end
+
     json_parser = proc { |body| ::Oj.load(body) }
     use Rack::Parser, content_types: {
       "application/json" => json_parser,
