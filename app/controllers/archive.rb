@@ -1,6 +1,6 @@
 Devolute::App.controllers :archive do
   before do
-    redirect '/login' unless (signed_in? || ENV["RACK_ENV"] == "test")
+    return redirect '/login' unless (signed_in? || ENV["RACK_ENV"] == "test")
   end
 
   get "/my" do

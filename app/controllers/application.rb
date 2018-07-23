@@ -1,6 +1,6 @@
 Devolute::App.controllers :application do
   before :except => ["/login"] do
-    redirect '/login' unless (signed_in? || ENV["RACK_ENV"] == "test")
+    return redirect '/login' unless (signed_in? || ENV["RACK_ENV"] == "test")
   end
 
   get :index, :map => '/' do
