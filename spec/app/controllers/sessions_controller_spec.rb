@@ -15,14 +15,16 @@ RSpec.describe "/sessions" do
     it "stay on page if account is not found" do
       expect(Account).to receive(:authenticate).and_return(nil)
       post 'sessions/create'
-      expect(last_response).to be_ok
+      expect(last_response).to be_redirect
+      expect(last_response.header["Location"]["login"]).to eq "login"
     end
 
     it "stay on login page if account has wrong password" do
       account.password = "fake"
       expect(Account).to receive(:authenticate).and_return(nil)
       post 'sessions/create', {:password => 'correct'}
-      expect(last_response).to be_ok
+      expect(last_response).to be_redirect
+      expect(last_response.header["Location"]["login"]).to eq "login"
     end
 
     it "redirects to home if correct email and password" do
@@ -30,6 +32,7 @@ RSpec.describe "/sessions" do
       expect(Account).to receive(:authenticate).and_return(account)
       post 'sessions/create', {:password => 'real', :remember_me => false}
       expect(last_response).to be_redirect
+      expect(last_response.header["Location"]).to eq "http://example.org/"
     end
   end
 
