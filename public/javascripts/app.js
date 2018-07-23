@@ -1,7 +1,7 @@
 !function() {
-  var app = angular.module('app', ["ngRoute"]);
+  var app = angular.module('app', []);
 
-  app.directive('myDirective', function ($route, httpPostFactory) {
+  app.directive('myDirective', function (httpPostFactory) {
    return {
        restrict: 'A',
        scope: true,

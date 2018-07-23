@@ -6,13 +6,4 @@ div ng-controller="IndexController"
 
   hr
 
-  / input type="file" file-model="myFile"
-  / button ng-click="uploadFile()" upload me
   input(data-my-Directive type="file" name="file")
-
-  div(ng-view)
-/ - content_for :head do
-  -#= stylesheet_link_tag :app
-
-/ - content_for :body do
-/   = javascript_include_tag :'angular.min.js', :app, defer: true
