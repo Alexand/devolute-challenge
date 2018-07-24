@@ -4,7 +4,15 @@ require "shrine"
 
 Shrine.plugin :determine_mime_type
 
-if ENV["RACK_ENV"] == "test"
+if ENV["RACK_ENV"] == "development"
+  require "shrine/storage/file_system"
+  require "shrine/storage/memory"
+
+  Shrine.storages = {
+    cache: Shrine::Storage::Memory.new,
+    store: Shrine::Storage::FileSystem.new("public", prefix: "uploads"),
+  }
+elsif ENV["RACK_ENV"] == "test"
   require "shrine/storage/memory"
 
   Shrine.storages = {
