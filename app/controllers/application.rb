@@ -1,5 +1,5 @@
 Devolute::App.controllers :application do
-  before :except => ["/login"] do
+  before do
     return redirect '/login' unless (signed_in? || ENV["RACK_ENV"] == "test")
   end
 
@@ -7,11 +7,5 @@ Devolute::App.controllers :application do
     @title = 'Index'
     @ng_app = "app"
     render 'index'
-  end
-
-  get "/login", :map do
-    @title = 'Login'
-
-    render :login
   end
 end
